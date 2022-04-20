@@ -250,6 +250,7 @@
     .account_currency{
         font-size: 1rem;
         font-weight: 100;  
+        text-transform: uppercase;
     }
 
     .account_buttons{
