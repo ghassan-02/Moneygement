@@ -57,7 +57,7 @@
                 <div class="modal-footer">
                     <a class='payment_btn delete_btn' href='#'><button type="button"
                             data-dismiss="modal">Cancel</button></a>
-                    <a class='payment_btn' href='/YourPayments'><button type="submit">Add Payment</button></a>
+                    <a class='payment_btn' href='#'><button type="submit">Add Payment</button></a>
                 </div>
             </form>
         </div>
@@ -65,10 +65,7 @@
 </div>
 
 
-{% if amounts|length < 1 %}
-<h4>There are no payments.</h4>
-{% else %}
-{% for a in user.payments %}
+
 <section class='payments_container'>
     <!-- USE A FOR LOOP TO CHECK EACH USER PAYMENT AND USE IF STATEMENTS TO SET THE 
     CORRECT CARD (EXPIRED/NOT EXPIRED), FOLLOWING ARE TWO EXAMPLES -->
@@ -79,47 +76,83 @@
         <div class='payment_title'>
             <div class='payment_amount'>
                 <h4>
-                    {{ a.amount }}
+                    <!-- {{ payment_amount }} -->17
                 </h4>
                 <p>
-                    {{ a.currency}} 
+                    <!-- {{ payment_currency}} -->USD
                 </p>
             </div>
             <h6>
-                {{ a.type }} 
+                <!-- {{ payment_type }} -->Recurring Payment
             </h6>
         </div>
         <hr>
         <div class='payment_info'>
             <h5 class='payment_subtitle'>Description</h5>
             <p class='payment_description'>
-                {{ a.description }} 
+                <!-- {{ description_text }} -->Netflix monthly payment
             </p>
         </div>
         <div class='payment_status'>
             <h5 class='payment_subtitle'>Status</h5>
             <p class='upcoming'>
-                {% if date < a.duedate %}
-                <p class='upcoming'>Upcoming</p>
-                {% else %}
-                <p class='past-due'>Past Due</p>
-                {% endif %}
-
+                <!-- {{ payment_status }} -->Upcoming
             </p>
         </div>
         <div class='payment_date'>
             <h5 class='payment_subtitle'>Due Date</h5>
-            <p>{{ a.duedate }}</p>
+            <p>
+                <!-- {{ payment_due_date }} -->31-08-2022
+            </p>
         </div>
         <hr>
         <div class='payment_buttons'>
             <a class='payment_btn' href='#'><button type='button'>Set as Paid</button></a>
-            <a class='payment_btn delete_btn' href='/DeletePayment/{{ a.id }}'><button type='button'>Delete</button></a>
+            <a class='payment_btn delete_btn' href='#'><button type='button'>Delete</button></a>
         </div>
     </div>
 
-{% endfor %}
-{% endif %}
+    <!-- IF PAYMENT IS PAST DUE USE THE FOLLOWING CARD-->
+    <div class='payment_card'>
+        <h5 class='payment_subtitle'>Amount</h5>
+        <div class='payment_title'>
+            <div class='payment_amount'>
+                <h4>
+                    <!-- {{ payment_amount }} -->545
+                </h4>
+                <p>
+                    <!-- {{ payment_currency}} -->USD
+                </p>
+            </div>
+            <h6>
+                <!-- {{ payment_type }} -->One-Time Payment
+            </h6>
+        </div>
+        <hr>
+        <div class='payment_info'>
+            <h5 class='payment_subtitle'>Description</h5>
+            <p class='payment_description'>
+                <!-- {{ description_text }} -->Car engine repair cost
+            </p>
+        </div>
+        <div class='payment_status'>
+            <h5 class='payment_subtitle'>Status</h5>
+            <p class='past-due'>
+                <!-- {{ payment_status }} -->Past Due
+            </p>
+        </div>
+        <div class='payment_date'>
+            <h5 class='payment_subtitle'>Due Date</h5>
+            <p>
+                <!-- {{ payment_due_date }} -->31-01-2022
+            </p>
+        </div>
+        <hr>
+        <div class='payment_buttons'>
+            <a class='payment_btn' href='#'><button type='button'>Set as Paid</button></a>
+            <a class='payment_btn delete_btn' href='#'><button type='button'>Delete</button></a>
+        </div>
+    </div>
+
+</section>
 {% endblock %}
-
-

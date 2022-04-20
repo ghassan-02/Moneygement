@@ -22,7 +22,7 @@
                     <fieldset>
                         <label for='account_input_name'>Account Name</label>
                         <input id='account_input_name' type="text" name='account_input_name'
-                            placeholder="Enter a name for this account">
+                            placeholder="Enter a name for your account...">
                     </fieldset>
 
                     <fieldset>
@@ -46,12 +46,12 @@
 
                     <fieldset>
                         <label for='account_input_balance'>Account Balance</label>
-                        <input id='account_input_balance' type="number" name='account_input_balance'>
+                        <input id='account_input_balance' type="number" name='account_input_balance' placeholder="Enter your account's current balance...">
                     </fieldset>
 
                     <fieldset>
                         <label for='account_input_description'>Account Description</label>
-                        <textarea id='account_input_description' name='account_input_description'></textarea>
+                        <textarea id='account_input_description' name='account_input_description' placeholder="Enter a description for your account..."></textarea>
                     </fieldset>
 
                 </div>
@@ -68,7 +68,7 @@
 <!-- Add for loop here, lists all financial accounts owned by the user -->
 
 {% if names|length < 1 %}
-<h4>There are no accounts.</h4>
+<h4>There are currently no accounts.</h4>
 {% else %}
 {% for a in user.accounts %}
 <section class='account_card'>
@@ -103,7 +103,7 @@
         <div class='account_buttons'>
             <a class='account_btn' href='#'><button type='button'>Add Transaction</button></a>
             <a class='account_btn' href='/update/{{ a.id }}'><button type='button'>Edit Account</button></a>
-            <a class='account_btn delete_btn' href='/delete/{{ a.id }}'><button type='button'>Delete Account</button></a>
+            <a class='account_btn delete_btn' href='/DeleteAccount/{{ a.id }}'><button type='button'>Delete Account</button></a>
         </div>
     </section>
 
