@@ -423,6 +423,54 @@
         background-color: black;
     }
 
+    #add_account_modal .modal-dialog .modal-content form .modal-body{
+        display: flex;
+        flex-direction: column;
+    }
+    #add_account_modal .modal-dialog .modal-content form .modal-body fieldset{
+        display: flex;
+        flex-direction: column;
+        margin: 1rem 0.5rem;
+    }
+
+    #add_account_modal .modal-dialog .modal-content form .modal-body fieldset input{
+        border: none;
+        border-bottom: solid 0.1rem black;
+        border-radius: 0%;
+        height: 2rem;
+        color: #626f2d;
+        caret-color: #626f2d;
+        background-color: transparent;
+    }
+
+    #add_account_modal .modal-dialog .modal-content form .modal-body fieldset select{
+        border: none;
+        border-bottom: solid 0.1rem black;
+        border-radius: 0%;
+        height: 2rem;
+        color: #626f2d;
+        caret-color: #626f2d;
+        background-color: transparent;
+    }
+
+    #add_account_modal .modal-dialog .modal-content form .modal-body fieldset textarea{
+        border: none;
+        border-bottom: solid 0.1rem black;
+        border-radius: 0%;
+        height: 3rem;
+        min-height: 2.25rem;
+        max-height: 4rem;
+        color: #626f2d;
+        caret-color: #626f2d;
+        background-color: transparent;
+    }
+    
+    #add_account_modal .modal-dialog .modal-content form .modal-body fieldset textarea::placeholder, #add_account_modal .modal-dialog .modal-content form .modal-body fieldset input::placeholder{
+        font-size: 1rem;
+        line-height: 1rem;
+    }
+
+
     footer{
         position: relative;
         top: 0rem;
