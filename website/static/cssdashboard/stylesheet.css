@@ -287,7 +287,7 @@
     .account_main_buttons, .payments_main_buttons{
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-around;
         padding: 2rem 5rem;
         width: 100%;
     }
@@ -299,7 +299,7 @@
         justify-content: space-around;
         align-items: center;
         border: none;
-        width: 10rem;
+        width: 16rem;
         height: 2rem;
         background-color: #626f2d;
         color: white;
@@ -424,17 +424,17 @@
         background-color: black;
     }
 
-    #add_account_modal .modal-dialog .modal-content form .modal-body{
+    #add_account_modal .modal-dialog .modal-content form .modal-body, #add_recurring_payment_modal .modal-dialog .modal-content form .modal-body, #add_single_payment_modal .modal-dialog .modal-content form .modal-body{
         display: flex;
         flex-direction: column;
     }
-    #add_account_modal .modal-dialog .modal-content form .modal-body fieldset{
+    #add_account_modal .modal-dialog .modal-content form .modal-body fieldset, #add_recurring_payment_modal .modal-dialog .modal-content form .modal-body fieldset, #add_single_payment_modal .modal-dialog .modal-content form .modal-body fieldset{
         display: flex;
         flex-direction: column;
         margin: 1rem 0.5rem;
     }
 
-    #add_account_modal .modal-dialog .modal-content form .modal-body fieldset input{
+    #add_account_modal .modal-dialog .modal-content form .modal-body fieldset input, #add_recurring_payment_modal .modal-dialog .modal-content form .modal-body fieldset input, #add_single_payment_modal .modal-dialog .modal-content form .modal-body fieldset input{
         border: none;
         border-bottom: solid 0.1rem black;
         border-radius: 0%;
@@ -444,7 +444,7 @@
         background-color: transparent;
     }
 
-    #add_account_modal .modal-dialog .modal-content form .modal-body fieldset select{
+    #add_account_modal .modal-dialog .modal-content form .modal-body fieldset select, #add_recurring_payment_modal .modal-dialog .modal-content form .modal-body fieldset select, #add_single_payment_modal .modal-dialog .modal-content form .modal-body fieldset select{
         border: none;
         border-bottom: solid 0.1rem black;
         border-radius: 0%;
@@ -454,7 +454,7 @@
         background-color: transparent;
     }
 
-    #add_account_modal .modal-dialog .modal-content form .modal-body fieldset textarea{
+    #add_account_modal .modal-dialog .modal-content form .modal-body fieldset textarea, #add_recurring_payment_modal .modal-dialog .modal-content form .modal-body fieldset textarea, #add_single_payment_modal .modal-dialog .modal-content form .modal-body fieldset textarea{
         border: none;
         border-bottom: solid 0.1rem black;
         border-radius: 0%;
@@ -466,7 +466,7 @@
         background-color: transparent;
     }
     
-    #add_account_modal .modal-dialog .modal-content form .modal-body fieldset textarea::placeholder, #add_account_modal .modal-dialog .modal-content form .modal-body fieldset input::placeholder{
+    #add_account_modal .modal-dialog .modal-content form .modal-body fieldset textarea::placeholder, #add_recurring_payment_modal .modal-dialog .modal-content form .modal-body fieldset input::placeholder, #add_single_payment_modal .modal-dialog .modal-content form .modal-body fieldset input::placeholder{
         font-size: 1rem;
         line-height: 1rem;
     }
