@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from .models import Account, Payment
 from . import db
 import datetime
+from datetime import timedelta
 
 
 views=Blueprint('views',__name__)
@@ -58,19 +59,52 @@ def UpcomingPayments():
         dd=request.form.get('payment_input_duedate')
         d=request.form.get('payment_input_description')
         dd=dd.split("-")
-        dd=datetime.date(int(dd[0]),int(dd[1]),int(dd[2]))
-
-        if a=="" or t=="" or c=="" or dd=="":
+        try:
+            dd=datetime.date(int(dd[0]),int(dd[1]),int(dd[2]))
+        except:
             flash("All fields should be filled", category='error')
             return redirect('/UpcomingPayments')
+
+        if t=="recurring":
+            p=request.form.get('payment_input_period')
+            if a=="" or t=="" or c=="" or dd=="" or p=="":
+                flash("All fields should be filled", category='error')
+                return redirect('/UpcomingPayments')
         else:
-            new_payment=Payment(amount=a,type=t,currency=c,duedate=dd,description=d,user_id=current_user.id)
-            db.session.add(new_payment)
-            db.session.commit()
-            return redirect('/UpcomingPayments')
+            p=""
+            if a=="" or t=="" or c=="" or dd=="":
+                flash("All fields should be filled", category='error')
+                return redirect('/UpcomingPayments')
+
+        new_payment=Payment(amount=a,type=t,period=p,currency=c,duedate=dd,description=d,user_id=current_user.id)
+        db.session.add(new_payment)
+        db.session.commit()
+        return redirect('/UpcomingPayments')
     else:
         amounts=Payment.query.order_by(Payment.amount).all()
         return render_template("upcoming_payments.html", user = current_user, amounts=amounts, date=datetime.date.today())
+
+@views.route('/SetAsPaid/<int:id>',methods=['GET','POST'])
+@login_required
+def SetAsPaid(id):
+    payment=Payment.query.get_or_404(id)
+
+    if request.method=="GET":
+
+        if payment.type=="recurring":
+            if payment.period=="weekly":
+                payment.duedate=payment.duedate+timedelta(days=7)
+            else:
+                if payment.period=="monthly":
+                    payment.duedate=payment.duedate+timedelta(days=30)
+                else:
+                    if payment.period=="yearly":
+                        payment.duedate=payment.duedate+timedelta(days=365)
+        db.session.commit()
+
+    return redirect('/UpcomingPayments')
+
+
 
 @views.route('/DeletePayment/<int:id>')
 @login_required
