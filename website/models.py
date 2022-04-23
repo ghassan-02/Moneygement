@@ -28,6 +28,7 @@ class Payment(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     amount=db.Column(db.Integer)
     type=db.Column(db.String(150))
+    period=db.Column(db.String(150))
     currency=db.Column(db.String(150))
     duedate=db.Column(db.Date)
     description=db.Column(db.String(150))
