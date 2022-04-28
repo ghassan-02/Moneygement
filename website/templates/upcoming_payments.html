@@ -10,7 +10,6 @@
 
 
 <!-- FORM USED TO GET INFORMATION AND ADD NEW PAYMENTS -->
-<!-- NOT DONE YET, NEEDS TO BE MODIFIED TO SUPPORT RECURRING PAYMENTS -->
 <div class="modal fade" id="add_single_payment_modal" data-backdrop="static" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -133,13 +132,13 @@
 </div>
 
 
-{% if amounts|length < 1 %} <h4>There are no payments.</h4>
-    {% else %}
-    {% for a in user.payments %}
+
     <section class='payments_container'>
         <!-- USE A FOR LOOP TO CHECK EACH USER PAYMENT AND USE IF STATEMENTS TO SET THE 
     CORRECT CARD (EXPIRED/NOT EXPIRED), FOLLOWING ARE TWO EXAMPLES -->
-
+    {% if amounts|length < 1 %} <h4>There are no payments.</h4>
+    {% else %}
+    {% for a in user.payments %}
         <!-- IF PAYMENT HASN'T EXPIRED USE THE FOLLOWING CARD-->
         <div class='payment_card'>
             <h5 class='payment_subtitle'>Amount</h5>
