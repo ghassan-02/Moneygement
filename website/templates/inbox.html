@@ -1,0 +1,51 @@
+{% extends 'base2.html' %}
+{% block section %}
+<section class='payments_main_buttons'>
+    <a href='#'><button type='button' data-toggle="modal" data-target="#add_single_payment_modal">Send a message
+            <img src='../static/img/add.svg'></button></a>    
+</section>
+<div class="modal fade" id="add_single_payment_modal" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Send</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action='' method="POST">
+                <div class="modal-body">
+                    <fieldset>
+                        <label for='message_destinator_email'>User email</label>
+                        <input id='message_destinator_email' type="email" name='message_destinator_email' placeholder="Destinator email">
+                    </fieldset>
+
+                    <fieldset>
+                        <label for='message_content'>Message content</label>
+                        <input id='message_content' type="text" name="message_content" required minlength="4" maxlength="300" placeholder="Message content">
+                    </fieldset>
+
+                    
+
+                </div>
+                <div class="modal-footer">
+                    <a class='payment_btn delete_btn' href='#'><button type="button"
+                            data-dismiss="modal">Cancel</button></a>
+                    <a class='payment_btn' href='/Inbox'><button type="submit">send message</button></a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Added modal for recurring billings (NEED TO ADD SUPPORT FROM BACKEND) -->
+
+<section>
+    <h1>There is no messages</h1>
+</section>
+{% endblock %}
+
+
+

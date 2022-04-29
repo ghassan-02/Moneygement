@@ -1,6 +1,7 @@
+from unicodedata import category
 from flask import Blueprint, render_template, flash, request, redirect
 from flask_login import login_required, current_user
-from .models import Account, Payment
+from .models import Account, Payment, Inbox, User
 from . import db
 import datetime
 from datetime import timedelta
@@ -113,4 +114,16 @@ def DeletePayment(id):
     db.session.delete(payment_to_delete)
     db.session.commit()
     return redirect('/UpcomingPayments')
-    
+
+@views.route('/Inbox', methods=['GET','POST'])
+@login_required
+def Inbox():
+    if request.method=='POST':
+        a=request.form.get('message_destinator_email')
+        b=request.form.get('message_content')
+        
+    message=Inbox(sender_name=a,content=b,user_id=current_user.id)
+    db.session.add(message)
+    db.session.commit()
+    return render_template("inbox.html", user = current_user)
+
