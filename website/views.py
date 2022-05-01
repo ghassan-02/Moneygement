@@ -1,7 +1,8 @@
 from unicodedata import category
 from flask import Blueprint, render_template, flash, request, redirect
 from flask_login import login_required, current_user
-from .models import Account, Payment, Inbox, User
+from zmq import Message
+from .models import Account, Payment, Message, User
 from . import db
 import datetime
 from datetime import timedelta
@@ -121,9 +122,27 @@ def Inbox():
     if request.method=='POST':
         a=request.form.get('message_destinator_email')
         b=request.form.get('message_content')
+        try:
+            desti_id=User.query.filter_by(email=a).first().id
+            message=Message(sender_name=current_user.firstname+' '+current_user.lastname,content=b,user_id=desti_id)
+            db.session.add(message)
+            db.session.commit()
+            
+        except:
+            flash('Email not found',category='error')
+        return redirect('/Inbox')
+
         
-    message=Inbox(sender_name=a,content=b,user_id=current_user.id)
-    db.session.add(message)
+    else:
+        content=Message.query.count()
+        return render_template("inbox.html", user = current_user, content=content)
+@views.route('/DeleteMessage/<int:id>')
+@login_required
+def DeleteMessage(id):
+    db.session.delete(Message.query.get(id))
     db.session.commit()
-    return render_template("inbox.html", user = current_user)
+    return redirect('/Inbox')
+
+
+
 

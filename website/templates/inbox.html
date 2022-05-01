@@ -32,20 +32,48 @@
                 <div class="modal-footer">
                     <a class='payment_btn delete_btn' href='#'><button type="button"
                             data-dismiss="modal">Cancel</button></a>
-                    <a class='payment_btn' href='/Inbox'><button type="submit">send message</button></a>
+                    <a class='payment_btn' href='/Inbox'><button type="submit">Send message</button></a>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
+{% if content < 1 %} <h4>There are no messages.</h4>
+    {% else %}
+    {% for m in user.inbox %}
+    <section class='message_container'>
+       
+        <div class='message_card'>
+            <h5 class='message_subtitle'>Sender</h5>
+            <div class='payment_title'>
+                <div class='messager_name'>
+                    <h4>
+                        {{ m.sender_name }}
+                    </h4>
+                    
+                </div>
+                
+            </div>
+            <hr>
+            <div class='message_info'>
+                <h5 class='message_subtitle'>Description</h5>
+                <p class='message_content'>
+                    {{ m.content }}
+                </p>
+            </div>
+            
+            
+            <hr>
+            <div class='payment_buttons'>
+                <a class='payment_btn delete_btn' href='/DeleteMessage/{{ m.id }}'><button
+                        type='button'>Delete</button></a>
+            </div>
+        </div>
 
-<!-- Added modal for recurring billings (NEED TO ADD SUPPORT FROM BACKEND) -->
-
-<section>
-    <h1>There is no messages</h1>
-</section>
-{% endblock %}
+        {% endfor %}
+        {% endif %}
+        {% endblock %}
 
 
 
