@@ -58,17 +58,18 @@
         
         </div>
 
+        <!-- ADD ACCOUNT VALUES IN INPUT VALUES, SEE BELOW -->
         <form action='' method="POST">
             <div class="fieldset_container">
                 <fieldset>
-                    <label for='account_input_name'>Account Name</label>
-                    <input id='account_input_name' type="text" name='account_input_name'
-                        placeholder="Enter a name for your account...">
+                    <label for='edit_name'>Account Name</label>
+                    <input id='edit_name' type="text" name='edit_name'
+                        placeholder="Enter a name for your account..." value={{ account_name }}> <!-- Notice the value here -->
                 </fieldset>
 
                 <fieldset>
-                    <label for='account_input_type'>Account Type</label>
-                    <select id='account_input_type' name='account_input_type'>
+                    <label for='edit_type'>Account Type</label>
+                    <select id='edit_type' name='edit_type' value={{ account_type }}> <!-- Value must be one of those below !! --> 
                         <option value='bank'>Bank Account</option>
                         <option value='online'>Online Account</option>
                         <option value='cash'>Cash</option>
@@ -77,8 +78,8 @@
                 </fieldset>
 
                 <fieldset>
-                    <label for='account_input_currency'>Account Currency</label>
-                    <select id='account_input_currency' name='account_input_currency'>
+                    <label for='edit_currency'>Account Currency</label>
+                    <select id='edit_currency' name='edit_currency' value={{ account_currency }}>
                         <option value='usd'>USD</option>
                         <option value='eur'>EUR</option>
                         <option value='lbp'>LBP</option>
@@ -86,13 +87,13 @@
                 </fieldset>
 
                 <fieldset>
-                    <label for='account_input_balance'>Account Balance</label>
-                    <input id='account_input_balance' type="number" name='account_input_balance' placeholder="Enter your account's current balance...">
+                    <label for='edit_balance'>Account Balance</label>
+                    <input id='edit_balance' type="number" name='edit_balance' placeholder="Enter your account's current balance..." value={{ account_balance }}>
                 </fieldset>
 
                 <fieldset>
-                    <label for='account_input_description'>Account Description</label>
-                    <textarea id='account_input_description' name='account_input_description' placeholder="Enter a description for your account..."></textarea>
+                    <label for='edit_description'>Account Description</label>
+                    <textarea id='edit_description' name='edit_description' placeholder="Enter a description for your account..." value={{ account_description }}></textarea>
                 </fieldset>
 
             </div>
