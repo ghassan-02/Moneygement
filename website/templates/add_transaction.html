@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="../static/cssexternalpages/stylesheet.css">
     <link rel="stylesheet" href="../static/cssexternalpages/stylesheet_mobile.css">
     <link rel="icon" href="../static/img/logo.png">
-    <title>Edit an Account - Moneygement</title>
+    <title>Add a Transaction - Moneygement</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
@@ -50,7 +50,7 @@
     <main>
         <div class='title_container'>
             <div>
-                <h3 id='total_balance_username'>Edit Account:
+                <h3 id='total_balance_username'>Add a Transaction:
                 </h3>
                 <h6 id='notification_count_title'>{{ account_name }}
                 </h6>
@@ -60,50 +60,26 @@
 
         <!-- ADD ACCOUNT VALUES IN INPUT VALUES, SEE BELOW -->
         <form action='' method="POST">
-            <div class="edit_fieldset_container">
+            <div class="transaction_fieldset_container">
                 <fieldset>
-                    <label for='edit_name'>Account Name</label>
-                    <input id='edit_name' type="text" name='edit_name' placeholder="Enter a name for your account..."
-                        value={{ account_name }} required> <!-- Notice the value here -->
+                    <label for='transaction_amount'>Amount</label>
+                    <input id='transaction_amount' type="number" name='transaction_amount'
+                        placeholder="Enter transaction amount..." required>
                 </fieldset>
 
                 <fieldset>
-                    <label for='edit_type'>Account Type</label>
-                    <select id='edit_type' name='edit_type' value={{ account_type }} required>
-                        <!-- Value must be one of those below !! -->
-                        <option value='bank'>Bank Account</option>
-                        <option value='online'>Online Account</option>
-                        <option value='cash'>Cash</option>
-                        <option value='other'>Other</option>
+                    <label for='transaction_type'>Transaction Type</label>
+                    <select id='transaction_type' name='transaction_type' required>
+                        <option value='deposit'>Deposit</option>
+                        <option value='withdrawal'>Withdrawal</option>
+
                     </select>
-                </fieldset>
-
-                <fieldset>
-                    <label for='edit_currency'>Account Currency</label>
-                    <select id='edit_currency' name='edit_currency' value={{ account_currency }} required>
-                        <option value='usd'>USD</option>
-                        <option value='eur'>EUR</option>
-                        <option value='lbp'>LBP</option>
-                    </select>
-                </fieldset>
-
-                <fieldset>
-                    <label for='edit_balance'>Account Balance</label>
-                    <input id='edit_balance' type="number" name='edit_balance'
-                        placeholder="Enter your account's current balance..." value={{ account_balance }} required>
-                </fieldset>
-
-                <fieldset>
-                    <label for='edit_description'>Account Description</label>
-                    <textarea id='edit_description' name='edit_description'
-                        placeholder="Enter a description for your account..." value={{ account_description }}
-                        required></textarea>
                 </fieldset>
 
             </div>
         </form>
 
-        <a href="#"><button class="save_button" type="submit">Save Changes</button></a>
+        <a href="#"><button class="save_button" type="submit">Add Transaction</button></a>
 
     </main>
 
