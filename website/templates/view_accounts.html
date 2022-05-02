@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="../static/cssexternalpages/stylesheet.css">
     <link rel="stylesheet" href="../static/cssexternalpages/stylesheet_mobile.css">
     <link rel="icon" href="../static/img/logo.png">
-    <title>Edit an Account - Moneygement</title>
+    <title>Select an Account - Moneygement</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
@@ -23,7 +23,7 @@
         </div>
     </header>
 
-    <div>
+    <!-- <div>
         {% with messages=get_flashed_messages(with_categories=true) %}
         {% if messages %}
         {% for category, message in messages %}
@@ -45,65 +45,64 @@
         {% endfor %}
         {% endif %}
         {% endwith %}
-    </div>
+    </div> -->
 
     <main>
         <div class='title_container'>
             <div>
-                <h3 id='total_balance_username'>Edit Account
+                <h3 id='total_balance_username'>Select an Account
                 </h3>
-                <h6 id='notification_count_title'>Account: {{ account_name }}
+                <h6 id='notification_count_title'>Currency: {{ payment_currency }}
                 </h6>
             </div>
 
         </div>
 
-        <!-- ADD ACCOUNT VALUES IN INPUT VALUES, SEE BELOW -->
-        <form action='' method="POST">
-            <div class="edit_fieldset_container">
-                <fieldset>
-                    <label for='edit_name'>Account Name</label>
-                    <input id='edit_name' type="text" name='edit_name' placeholder="Enter a name for your account..."
-                        value={{ account_name }} required> <!-- Notice the value here -->
-                </fieldset>
+        <div class="accounts">
 
-                <fieldset>
-                    <label for='edit_type'>Account Type</label>
-                    <select id='edit_type' name='edit_type' value={{ account_type }} required>
-                        <!-- Value must be one of those below !! -->
-                        <option value='bank'>Bank Account</option>
-                        <option value='online'>Online Account</option>
-                        <option value='cash'>Cash</option>
-                        <option value='other'>Other</option>
-                    </select>
-                </fieldset>
+            <!-- ADD FOR LOOP HERE!!! -->
+            <section class="account_card">
+                <section class='account_section1'>
+                    <div class='account_title'>
+                        <h4 class='account_title_text'>
+                            {{ a.name }}
+                        </h4>
+                        <h4 class='account_type'>
+                            {{ a.type }}
+                        </h4>
+                    </div>
 
-                <fieldset>
-                    <label for='edit_currency'>Account Currency</label>
-                    <select id='edit_currency' name='edit_currency' value={{ account_currency }} required>
-                        <option value='usd'>USD</option>
-                        <option value='eur'>EUR</option>
-                        <option value='lbp'>LBP</option>
-                    </select>
-                </fieldset>
+                    <div class='account_info'>
+                        <h6 class='account_description_title'>Description</h6>
+                        <p class='account_description'>
+                            {{ a.description }}
+                        </p>
+                        <p class='account_bal_title'>Balance</p>
+                        <div class='account_bal_cur'>
+                            <p class='account_balance'>
+                                {{ a.balance }}
+                            </p>
+                            <p class='account_currency'>
+                                {{ a.currency }}
+                            </p>
+                        </div>
 
-                <fieldset>
-                    <label for='edit_balance'>Account Balance</label>
-                    <input id='edit_balance' type="number" name='edit_balance'
-                        placeholder="Enter your account's current balance..." value={{ account_balance }} required>
-                </fieldset>
+                    </div>
 
-                <fieldset>
-                    <label for='edit_description'>Account Description</label>
-                    <textarea id='edit_description' name='edit_description'
-                        placeholder="Enter a description for your account..." value={{ account_description }}
-                        required></textarea>
-                </fieldset>
+                    <!-- add links to each button intead of # -->
+                    <div class='account_buttons'>
+                        <a href='#'><button class='save_button' type='button'>Select</button></a>
+                    </div>
+                </section>
+            </section>
+            
 
-            </div>
-        </form>
 
-        <a href="#"><button class="save_button" type="submit">Save Changes</button></a>
+
+        </div>
+
+
+
 
     </main>
 
