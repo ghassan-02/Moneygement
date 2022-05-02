@@ -1,5 +1,5 @@
 from unicodedata import category
-from flask import Blueprint, render_template, flash, request, redirect
+from flask import Blueprint, render_template, flash, request, redirect, url_for
 from flask_login import login_required, current_user
 from zmq import Message
 from .models import Account, Payment, Message, User
@@ -41,6 +41,59 @@ def YourAccounts():
         names=Account.query.order_by(Account.name).all()
         return render_template("accounts.html", user = current_user, names=names)
 
+@views.route('/EditAccount/<int:id>', methods=['GET','POST'])
+@login_required
+def EditAccount(id):
+    account_to_edit=Account.query.get_or_404(id)
+    if request.method == 'POST':
+        n=request.form.get('edit_name')
+        t=request.form.get('edit_type')
+        c=request.form.get('edit_currency')
+        b=request.form.get('edit_balance')
+        d=request.form.get('edit_description')
+
+        if n=="" or t=="" or c=="" or b=="":
+            flash("All fields should be filled", category='error')
+            return render_template("edit_account.html", user=current_user, a=account_to_edit)
+
+        else:
+            account_to_edit.name=n
+            account_to_edit.type=t
+            account_to_edit.currency=c
+            account_to_edit.balance=b
+            account_to_edit.description=d
+            
+            db.session.commit()
+            return redirect('/YourAccounts')
+
+    else:
+        return render_template("edit_account.html", user=current_user, a=account_to_edit)
+
+@views.route('/AddTransaction/<int:id>', methods=['GET','POST'])
+@login_required
+def AddTransaction(id):
+    account_to_change=Account.query.get_or_404(id)
+    if request.method=='POST':
+        a=request.form.get('transaction_amount')
+        t=request.form.get('transaction_type')
+
+        if a=="" or t=="":
+            flash("All fields should be filled", category='error')
+            return render_template("add_transaction.html", user=current_user, a=account_to_change)
+
+        else:
+            if t=="deposit":
+                account_to_change.balance=account_to_change.balance + float(a)
+            else:
+                if t=="withdrawal":
+                    account_to_change.balance=account_to_change.balance - float(a)
+            db.session.commit()
+            return redirect('/YourAccounts')
+    
+    return render_template("add_transaction.html", user=current_user, a=account_to_change)
+
+
+        
 @views.route('/DeleteAccount/<int:id>')
 @login_required
 def DeleteAccount(id):
@@ -82,9 +135,9 @@ def UpcomingPayments():
         db.session.add(new_payment)
         db.session.commit()
         return redirect('/UpcomingPayments')
-    else:
-        amounts=Payment.query.order_by(Payment.amount).all()
-        return render_template("upcoming_payments.html", user = current_user, amounts=amounts, date=datetime.date.today())
+    
+    amounts=Payment.query.order_by(Payment.amount).all()
+    return render_template("upcoming_payments.html", user = current_user, amounts=amounts, date=datetime.date.today())
 
 @views.route('/SetAsPaid/<int:id>',methods=['GET','POST'])
 @login_required

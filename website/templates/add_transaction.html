@@ -64,22 +64,20 @@
                 <fieldset>
                     <label for='transaction_amount'>Amount</label>
                     <input id='transaction_amount' type="number" name='transaction_amount'
-                        placeholder="Enter transaction amount..." required>
+                        placeholder="Enter transaction amount...">
                 </fieldset>
 
                 <fieldset>
                     <label for='transaction_type'>Transaction Type</label>
-                    <select id='transaction_type' name='transaction_type' required>
+                    <select id='transaction_type' name='transaction_type' >
                         <option value='deposit'>Deposit</option>
                         <option value='withdrawal'>Withdrawal</option>
 
                     </select>
                 </fieldset>
-
             </div>
+            <a href="/AddTransaction/{{ a.id }}"><button class="save_button" type="submit">Add Transaction</button></a>
         </form>
-
-        <a href="#"><button class="save_button" type="submit">Add Transaction</button></a>
 
     </main>
 
