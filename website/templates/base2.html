@@ -56,7 +56,7 @@
                 <h3 id='total_balance_username'>Welcome {{ user.firstname }} {{ user.lastname }}
                 </h3>
                 <h6 id='notification_count_title'>You have
-                    <!--{{ notification_count }}-->0 new notifications.
+                    {{ unread_messages_count }} (count) new messages.
                 </h6>
             </div>
             <span class='separator'>
@@ -66,10 +66,10 @@
                 <h3 id='total_balance_title'>Your total balance:</h3>
                 <div id='total_balance'>
                     <h5>
-                        <!-- {{ total_balance }} -->8 592 942
+                        {{ total_balance }} (balance)
                     </h5>
                     <h5>
-                        <!-- {{ total_balance_currency }} -->USD
+                        {{ total_balance_currency }} (currency)
                     </h5>
                 </div>
             </div>
@@ -90,7 +90,7 @@
                 </div>
                 <hr>
                 <div class='section_name_container'>
-                    <h4 class='section_name'><a href='/Inbox'>Invoice Generator</a></h4>
+                    <h4 class='section_name'><a href='/Inbox'>Moneygement Messanger</a></h4>
                 </div>
                 <hr>
                 <div class='section_name_container'>
