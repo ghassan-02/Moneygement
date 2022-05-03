@@ -2,7 +2,7 @@ from unicodedata import category
 from flask import Blueprint, render_template, flash, request, redirect, url_for
 from flask_login import login_required, current_user
 from zmq import Message
-from .models import Account, Payment, Message, User
+from .models import Account, Payment, Message, User, Payments_history
 from . import db
 import datetime
 from datetime import timedelta
@@ -145,7 +145,7 @@ def SetAsPaid(id):
     payment=Payment.query.get_or_404(id)
 
     if request.method=="GET":
-
+        payment_h=Payments_history(amount=payment.amount,currency=payment.currency,paiddate=datetime.date.today(),user_id=current_user.id)
         if payment.type=="recurring":
             if payment.period=="weekly":
                 payment.duedate=payment.duedate+timedelta(days=7)
@@ -155,6 +155,10 @@ def SetAsPaid(id):
                 else:
                     if payment.period=="yearly":
                         payment.duedate=payment.duedate+timedelta(days=365)
+        else:
+            db.session.delete(payment)
+        
+        db.session.add(payment_h) 
         db.session.commit()
 
     return redirect('/UpcomingPayments')
@@ -195,6 +199,29 @@ def DeleteMessage(id):
     db.session.delete(Message.query.get(id))
     db.session.commit()
     return redirect('/Inbox')
+
+@views.route('/Graph')
+@login_required
+def Graph():
+    history=Payments_history.query.filter_by(user_id=current_user.id).all()
+    data=[]
+    for i in history:
+        data.append([str(i.paiddate),i.amount])
+    xaxis=[]
+    yaxis=[]
+    for i in data:
+        if i[0] not in xaxis:
+           
+            xaxis.append(i[0])
+    for i in xaxis:
+        s=0
+        for j in data:
+            if i==j[0]:
+                s+=j[1]
+        yaxis.append(s)
+        
+    
+    return render_template('graphs.html',user=current_user,xaxis=xaxis,yaxis=yaxis,history=history)
 
 
 
