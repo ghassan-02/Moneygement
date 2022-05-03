@@ -13,6 +13,12 @@
         flex-direction: column;
     }
 
+    main{
+        height: 90rem;
+        overflow-y: scroll;
+    }
+
+
   
     #logout_button{
         padding: 0.25rem;
@@ -67,7 +73,7 @@
         flex-direction: column;
         flex-wrap: nowrap;
         margin-bottom: -0.25rem;
-        height: 100vh;
+        height: 100%;
         align-items: center;
     }
 
@@ -124,6 +130,16 @@
     textarea::placeholder{
         font-size: 1rem;
         line-height: 1rem;
+    }
+
+    form{
+        height: fit-content;
+        margin-bottom: 5rem;
+    }
+
+    form a{
+        display: flex;
+        justify-content: center;
     }
 
     .save_button{

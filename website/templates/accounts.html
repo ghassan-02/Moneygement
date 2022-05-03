@@ -39,8 +39,7 @@
                         <label for='account_input_currency'>Account Currency</label>
                         <select id='account_input_currency' name='account_input_currency'>
                             <option value='usd'>USD</option>
-                            <option value='eur'>EUR</option>
-                            <option value='lbp'>LBP</option>
+                            
                         </select>
                     </fieldset>
 
@@ -101,8 +100,8 @@
 
         <!-- add links to each button intead of # -->
         <div class='account_buttons'>
-            <a class='account_btn' href='#'><button type='button'>Add Transaction</button></a>
-            <a class='account_btn' href='/update/{{ a.id }}'><button type='button'>Edit Account</button></a>
+            <a class='account_btn' href='/AddTransaction/{{ a.id }}'><button type='button'>Add Transaction</button></a>
+            <a class='account_btn' href='/EditAccount/{{ a.id }}'><button type='button'>Edit Account</button></a>
             <a class='account_btn delete_btn' href='/DeleteAccount/{{ a.id }}'><button type='button'>Delete Account</button></a>
         </div>
     </section>

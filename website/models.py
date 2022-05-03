@@ -14,6 +14,8 @@ class User(db.Model, UserMixin): #databse layout
     country=db.Column(db.String(150))
     accounts=db.relationship('Account')
     payments=db.relationship('Payment')
+    inbox=db.relationship('Message')
+    payments_history=db.relationship('Payments_history') 
 
 class Account(db.Model):
     id=db.Column(db.Integer,primary_key=True)
@@ -34,3 +36,15 @@ class Payment(db.Model):
     description=db.Column(db.String(150))
     user_id=db.Column(db.Integer, db.ForeignKey('user.id'))
 
+class Message(db.Model):
+    id=db.Column(db.Integer,primary_key=True)
+    sender_name=db.Column(db.String(150))
+    content=db.Column(db.String(300))
+    user_id=db.Column(db.Integer, db.ForeignKey('user.id'))
+
+class Payments_history(db.Model):
+    id=db.Column(db.Integer,primary_key=True)
+    amount=db.Column(db.Integer)
+    currency=db.Column(db.String(150))
+    paiddate=db.Column(db.Date)
+    user_id=db.Column(db.Integer, db.ForeignKey('user.id'))

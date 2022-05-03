@@ -52,7 +52,7 @@
             <div>
                 <h3 id='total_balance_username'>Edit Account
                 </h3>
-                <h6 id='notification_count_title'>Account: {{ account_name }}
+                <h6 id='notification_count_title'>Account: {{ a.name }}
                 </h6>
             </div>
 
@@ -64,12 +64,12 @@
                 <fieldset>
                     <label for='edit_name'>Account Name</label>
                     <input id='edit_name' type="text" name='edit_name' placeholder="Enter a name for your account..."
-                        value={{ account_name }} required> <!-- Notice the value here -->
+                        value='{{ a.name }}'> <!-- Notice the value here -->
                 </fieldset>
 
                 <fieldset>
                     <label for='edit_type'>Account Type</label>
-                    <select id='edit_type' name='edit_type' value={{ account_type }} required>
+                    <select id='edit_type' name='edit_type'>
                         <!-- Value must be one of those below !! -->
                         <option value='bank'>Bank Account</option>
                         <option value='online'>Online Account</option>
@@ -80,30 +80,28 @@
 
                 <fieldset>
                     <label for='edit_currency'>Account Currency</label>
-                    <select id='edit_currency' name='edit_currency' value={{ account_currency }} required>
+                    <select id='edit_currency' name='edit_currency'>
                         <option value='usd'>USD</option>
-                        <option value='eur'>EUR</option>
-                        <option value='lbp'>LBP</option>
+                        
                     </select>
                 </fieldset>
 
                 <fieldset>
                     <label for='edit_balance'>Account Balance</label>
                     <input id='edit_balance' type="number" name='edit_balance'
-                        placeholder="Enter your account's current balance..." value={{ account_balance }} required>
+                        placeholder="Enter your account's current balance..." value='{{ a.balance }}'>
                 </fieldset>
 
                 <fieldset>
                     <label for='edit_description'>Account Description</label>
                     <textarea id='edit_description' name='edit_description'
-                        placeholder="Enter a description for your account..." value={{ account_description }}
-                        required></textarea>
+                        placeholder="Enter a description for your account..." >{{ a.description }}</textarea>
                 </fieldset>
 
             </div>
+            <a href="/EditAccount/{{ a.id }}"><button class="save_button" type="submit">Save Changes</button></a>
         </form>
 
-        <a href="#"><button class="save_button" type="submit">Save Changes</button></a>
 
     </main>
 
