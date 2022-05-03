@@ -481,6 +481,9 @@
         background-color: black;
     }
 
+    .account_type, .payment_type, .account_title_text{
+        text-transform: capitalize;
+    }
 
     #add_account_modal .modal-dialog .modal-content form .modal-body, #add_recurring_payment_modal .modal-dialog .modal-content form .modal-body, #add_single_payment_modal .modal-dialog .modal-content form .modal-body{
         display: flex;
