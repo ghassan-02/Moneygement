@@ -34,6 +34,7 @@ class Payment(db.Model):
     currency=db.Column(db.String(150))
     duedate=db.Column(db.Date)
     description=db.Column(db.String(150))
+    payment_accountid=db.Column(db.Integer)
     user_id=db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class Message(db.Model):

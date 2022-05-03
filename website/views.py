@@ -116,44 +116,58 @@ def UpcomingPayments():
     total_amount=0
     for i in accounts:
         total_amount+=i.balance
-    if request.method == 'POST':
-        a=request.form.get('payment_input_amount')
-        t=request.form.get('payment_input_type')
-        c=request.form.get('payment_input_currency')
-        dd=request.form.get('payment_input_duedate')
-        d=request.form.get('payment_input_description')
-        dd=dd.split("-")
-        try:
-            dd=datetime.date(int(dd[0]),int(dd[1]),int(dd[2]))
-        except:
-            flash("All fields should be filled", category='error')
+    if Account.query.filter_by(user_id=current_user.id).count()!=0:
+        if request.method == 'POST':
+            a=request.form.get('payment_input_amount')
+            b=request.form.get('account_payments')
+            t=request.form.get('payment_input_type')
+            c=request.form.get('payment_input_currency')
+            dd=request.form.get('payment_input_duedate')
+            d=request.form.get('payment_input_description')
+            dd=dd.split("-")
+            
+            try:
+                
+                dd=datetime.date(int(dd[0]),int(dd[1]),int(dd[2]))
+            except:
+                flash("All fields should be filled", category='error')
+                return redirect('/UpcomingPayments')
+
+            if t=="recurring":
+                p=request.form.get('payment_input_period')
+                if a=="" or t=="" or c=="" or dd=="" or p=="":
+                    flash("All fields should be filled", category='error')
+                    return redirect('/UpcomingPayments')
+            else:
+                p=""
+                if a=="" or t=="" or c=="" or dd=="":
+                    flash("All fields should be filled", category='error')
+                    return redirect('/UpcomingPayments')
+
+            new_payment=Payment(amount=a,type=t,period=p,currency=c,duedate=dd,description=d,payment_accountid=b,user_id=current_user.id)
+            db.session.add(new_payment)
+            db.session.commit()
             return redirect('/UpcomingPayments')
+       
+        amounts=Payment.query.order_by(Payment.amount).all()
+        return render_template("upcoming_payments.html", user = current_user, amounts=amounts,date=datetime.date.today(),total_amount=total_amount)
+    else:
+        flash('You must create an account first',category='error')
+        amounts=Payment.query.order_by(Payment.amount).all()
+        return render_template("upcoming_payments.html", user = current_user, amounts=amounts, date=datetime.date.today(),total_amount=total_amount)
 
-        if t=="recurring":
-            p=request.form.get('payment_input_period')
-            if a=="" or t=="" or c=="" or dd=="" or p=="":
-                flash("All fields should be filled", category='error')
-                return redirect('/UpcomingPayments')
-        else:
-            p=""
-            if a=="" or t=="" or c=="" or dd=="":
-                flash("All fields should be filled", category='error')
-                return redirect('/UpcomingPayments')
-
-        new_payment=Payment(amount=a,type=t,period=p,currency=c,duedate=dd,description=d,user_id=current_user.id)
-        db.session.add(new_payment)
-        db.session.commit()
-        return redirect('/UpcomingPayments')
-    
-    amounts=Payment.query.order_by(Payment.amount).all()
-    return render_template("upcoming_payments.html", user = current_user, amounts=amounts, date=datetime.date.today(),total_amount=total_amount)
 
 @views.route('/SetAsPaid/<int:id>',methods=['GET','POST'])
 @login_required
 def SetAsPaid(id):
+    
+    
     payment=Payment.query.get_or_404(id)
-
+    
+        
     if request.method=="GET":
+        accountid_to_withdaw=Account.query.get_or_404(payment.payment_accountid)
+        accountid_to_withdaw.balance-=payment.amount
         payment_h=Payments_history(amount=payment.amount,currency=payment.currency,paiddate=datetime.date.today(),user_id=current_user.id)
         if payment.type=="recurring":
             if payment.period=="weekly":
@@ -166,11 +180,12 @@ def SetAsPaid(id):
                         payment.duedate=payment.duedate+timedelta(days=365)
         else:
             db.session.delete(payment)
-        
+            
         db.session.add(payment_h) 
         db.session.commit()
 
-    return redirect('/UpcomingPayments')
+        return redirect('/UpcomingPayments')
+    
 
 
 

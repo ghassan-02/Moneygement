@@ -38,10 +38,19 @@
                         <label for='payment_input_currency'>Payment Currency</label>
                         <select id='payment_input_currency' name='payment_input_currency'>
                             <option value='usd'>USD</option>
-                            <option value='eur'>EUR</option>
-                            <option value='lbp'>LBP</option>
+                            
                         </select>
                     </fieldset>
+                    <fieldset>
+                        <label for='account_payments'>Choose account for payment</label>
+                        <select id='account_payments' name='account_payments'>
+                            {%for i in user.accounts%}
+                            <option value="{{i.id}}"> {{i.name}} </option>
+                            {% endfor %}
+                            
+                            
+                        </select>
+                </fieldset>
 
                     <fieldset>
                         <label for='payment_input_duedate'>Payment Due Date</label>
@@ -95,8 +104,7 @@
                         <label for='payment_input_currency2'>Payment Currency</label>
                         <select id='payment_input_currency2' name='payment_input_currency'>
                             <option value='usd'>USD</option>
-                            <option value='eur'>EUR</option>
-                            <option value='lbp'>LBP</option>
+                            
                         </select>
                     </fieldset>
 
@@ -108,6 +116,18 @@
                             <option value='yearly'>Yearly</option>
                         </select>
                     </fieldset>
+                    
+                    <fieldset>
+                            <label for='account_payments'>Choose account for payment</label>
+                            <select id='account_payments' name='account_payments'>
+                                {%for i in user.accounts%}
+                                <option value="{{i.id}}"> {{i.name}} </option>
+                                {% endfor %}
+                                
+                                
+                            </select>
+                    </fieldset>
+                    
 
                     <fieldset>
                         <label for='payment_input_duedate2'>First Due Date</label>
@@ -141,6 +161,7 @@
     {% for a in user.payments %}
         <!-- IF PAYMENT HASN'T EXPIRED USE THE FOLLOWING CARD-->
         <div class='payment_card'>
+            
             <h5 class='payment_subtitle'>Amount</h5>
             <div class='payment_title'>
                 <div class='payment_amount'>
@@ -161,7 +182,7 @@
                 <p class='payment_description'>
                     {{ a.description }}
                 </p>
-            </div>
+            </div>    
             <div class='payment_status'>
                 <h5 class='payment_subtitle'>Status</h5>
                 <p class='upcoming'>
@@ -176,8 +197,11 @@
                 <h5 class='payment_subtitle'>Due Date</h5>
                 <p>{{ a.duedate }}</p>
             </div>
+            
             <hr>
+            
             <div class='payment_buttons'>
+                
                 <a class='payment_btn' href='/SetAsPaid/{{ a.id }}'><button type='button'>Set as Paid</button></a>
                 <a class='payment_btn delete_btn' href='/DeletePayment/{{ a.id }}'><button
                         type='button'>Delete</button></a>
