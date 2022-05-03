@@ -52,7 +52,7 @@
             <div>
                 <h3 id='total_balance_username'>Edit Account
                 </h3>
-                <h6 id='notification_count_title'>Account: {{ account_name }}
+                <h6 id='notification_count_title'>Account: {{ a.name }}
                 </h6>
             </div>
 
@@ -96,7 +96,7 @@
                 <fieldset>
                     <label for='edit_description'>Account Description</label>
                     <textarea id='edit_description' name='edit_description'
-                        placeholder="Enter a description for your account..." ></textarea>
+                        placeholder="Enter a description for your account..." >{{ a.description }}</textarea>
                 </fieldset>
 
             </div>
