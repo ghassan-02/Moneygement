@@ -56,7 +56,7 @@
                 <h3 id='total_balance_username'>Welcome {{ user.firstname }} {{ user.lastname }}
                 </h3>
                 <h6 id='notification_count_title'>You have
-                    {{ unread_messages_count }} (count) new messages.
+                    <!--{{ notification_count }}-->0 new messages.
                 </h6>
             </div>
             <span class='separator'>
@@ -66,10 +66,10 @@
                 <h3 id='total_balance_title'>Your total balance:</h3>
                 <div id='total_balance'>
                     <h5>
-                        {{ total_balance }} (balance)
+                        {{ total_amount }}
                     </h5>
                     <h5>
-                        {{ total_balance_currency }} (currency)
+                        USD
                     </h5>
                 </div>
             </div>
