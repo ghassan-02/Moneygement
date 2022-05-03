@@ -22,6 +22,11 @@ def welcome():
 @views.route('/YourAccounts', methods=['GET','POST'])
 @login_required
 def YourAccounts():
+    accounts=Account.query.filter_by(user_id=current_user.id)
+    total_amount=0
+    for i in accounts:
+        total_amount+=i.balance
+
     if request.method == 'POST':
         n=request.form.get('account_input_name')
         t=request.form.get('account_input_type')
@@ -39,7 +44,7 @@ def YourAccounts():
             return redirect('/YourAccounts')
     else:
         names=Account.query.order_by(Account.name).all()
-        return render_template("accounts.html", user = current_user, names=names)
+        return render_template("accounts.html", user = current_user, names=names,total_amount=total_amount)
 
 @views.route('/EditAccount/<int:id>', methods=['GET','POST'])
 @login_required
@@ -107,6 +112,10 @@ def DeleteAccount(id):
 @views.route('/UpcomingPayments', methods=['GET','POST'])
 @login_required
 def UpcomingPayments():
+    accounts=Account.query.filter_by(user_id=current_user.id)
+    total_amount=0
+    for i in accounts:
+        total_amount+=i.balance
     if request.method == 'POST':
         a=request.form.get('payment_input_amount')
         t=request.form.get('payment_input_type')
@@ -137,7 +146,7 @@ def UpcomingPayments():
         return redirect('/UpcomingPayments')
     
     amounts=Payment.query.order_by(Payment.amount).all()
-    return render_template("upcoming_payments.html", user = current_user, amounts=amounts, date=datetime.date.today())
+    return render_template("upcoming_payments.html", user = current_user, amounts=amounts, date=datetime.date.today(),total_amount=total_amount)
 
 @views.route('/SetAsPaid/<int:id>',methods=['GET','POST'])
 @login_required
@@ -176,6 +185,10 @@ def DeletePayment(id):
 @views.route('/Inbox', methods=['GET','POST'])
 @login_required
 def Inbox():
+    accounts=Account.query.filter_by(user_id=current_user.id)
+    total_amount=0
+    for i in accounts:
+        total_amount+=i.balance
     if request.method=='POST':
         a=request.form.get('message_destinator_email')
         b=request.form.get('message_content')
@@ -192,7 +205,7 @@ def Inbox():
         
     else:
         content=Message.query.count()
-        return render_template("inbox.html", user = current_user, content=content)
+        return render_template("inbox.html", user = current_user, content=content,total_amount=total_amount)
 @views.route('/DeleteMessage/<int:id>')
 @login_required
 def DeleteMessage(id):
@@ -203,6 +216,10 @@ def DeleteMessage(id):
 @views.route('/Graph')
 @login_required
 def Graph():
+    accounts=Account.query.filter_by(user_id=current_user.id)
+    total_amount=0
+    for i in accounts:
+        total_amount+=i.balance
     history=Payments_history.query.filter_by(user_id=current_user.id).all()
     data=[]
     for i in history:
@@ -221,7 +238,7 @@ def Graph():
         yaxis.append(s)
         
     
-    return render_template('graphs.html',user=current_user,xaxis=xaxis,yaxis=yaxis,history=history)
+    return render_template('graphs.html',user=current_user,xaxis=xaxis,yaxis=yaxis,history=history,total_amount=total_amount)
 
 
 
