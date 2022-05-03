@@ -30,5 +30,10 @@ var layout = {
 Plotly.newPlot("myPlot", data, layout);
 </script>
 </div>
+{%for i in history%}
+<div class="payment history"> 
+    <h5>{{i.paiddate}} : {{i.amount}} $</h5>
+</div>
+{% endfor %}
 
 {% endblock %}
