@@ -147,7 +147,28 @@ def DeleteMessage(id):
     db.session.commit()
     return redirect('/Inbox')
 
-
+@views.route('/Graph')
+@login_required
+def Graph():
+    history=Payments_history.query.filter_by(user_id=current_user.id).all()
+    data=[]
+    for i in history:
+        data.append([str(i.paiddate),i.amount])
+    xaxis=[]
+    yaxis=[]
+    for i in data:
+        if i[0] not in xaxis:
+           
+            xaxis.append(i[0])
+    for i in xaxis:
+        s=0
+        for j in data:
+            if i==j[0]:
+                s+=j[1]
+        yaxis.append(s)
+        
+    
+    return render_template('graphs.html',user=current_user,xaxis=xaxis,yaxis=yaxis,history=history)
 
 
 
