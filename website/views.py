@@ -266,5 +266,3 @@ def Graph():
     return render_template('graphs.html',user=current_user,xaxis=xaxis,yaxis=yaxis,history=history,total_amount=total_amount)
 
 
-
-

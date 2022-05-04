@@ -1,21 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
 @media(max-width: 1000px){
+
+
     body{
-        display: flexbox;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 100%;
         margin: 0%;
         font-family: PT Sans, open-sans;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    hr{
+        background-color: #626f2d;
+        width: 100%;
+    }
+
+    .privacy_title{
+        margin-bottom: 3rem;
+        color: #626f2d;
     }
 
     .navigation{
         display: flex;
         flex-direction: column;
         background-color: rgb(0, 0, 0);
-        margin: 0% !important;
-        margin-bottom: 2.5rem;
-        justify-content:space-between;
+        margin: 0%;
+        justify-content: space-between;
         align-items: center;
     }
 
@@ -28,17 +38,17 @@
     .navigation ul{
         display: flex;
         flex-direction: row;
+        justify-content: center;
         list-style: none;
-        margin-right: 2rem;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
+        padding-left: 0px;
     }
 
     .navigation ul a{
         text-decoration: none;
         color: white;
         font-size: large;
-        margin: 0rem 0.5rem;
-        padding: 0.25rem;
+        margin: 0rem 1rem;
     }
 
     .navigation ul a:hover{
@@ -46,69 +56,60 @@
     }
 
     main{
-        display: flex !important;
-        flex-direction: row;
+        display: flex;
+        flex-direction: column;
         flex-wrap: wrap;
         justify-content: space-between;
-        margin-bottom: 5rem;
-        margin-top: 0.5rem;
+        height: 100%;
+        padding: 1rem;
     }
+    
 
-    #img_section{
-        display: none;
-    }
-
-    #form_section{
+    form{
         display: flex;
-        justify-self: center;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        margin: auto;
-        margin-bottom: 2.5rem;
+        height: 100%;
     }
 
-    #form_section form{
-        text-align: center;
+    label{
+        font-size:1rem;
     }
 
-    #form_section h1{
-        font-size: xx-large;
-        margin-bottom: 4rem;
-    }
 
-    #form_section p{
-        color: grey;
-    }
-    #form_section p a{
-        color: #626f2d;
-    }
-
-    #form_section form fieldset{
+    fieldset{
         display: flex;
         border: none;
         margin: 2rem 0rem;
-    }
-
-    #username_fieldset, #password_fieldset{
         flex-direction: column;
     }
 
-    #username, #password{
+
+
+    input, textarea{
         border: none;
         border-bottom: solid 0.1rem black;
         border-radius: 0%;
-        width: 15rem;
+        width: 17.5rem;
         height: 2rem;
         color: #626f2d;
-        font-size: 1rem;
         caret-color: #626f2d;
     }
 
-    #username::placeholder, #password::placeholder{
+    input::placeholder, textarea::placeholder{
         font-size: 1rem;
         line-height: 1rem;
     }
 
-    #login_button{
+    #support_message{
+        min-height: 7rem;
+        max-height: 10rem;
+        max-width: 17.5rem;
+        min-width: 17.5rem;
+    }
+
+    .submit_btn button{
         background-color: transparent;
         border: none;
         font-size: medium;
@@ -116,78 +117,16 @@
         padding: 0.25rem 1rem;
     }
 
-    #login_button:hover{
+    .submit_btn button:hover{
         color: #626f2d;
     }
-
-    #privacypolicy_fieldset{
-        margin: auto;
-        display: flex;
-        border: none;
-        margin: 0rem 0rem;
-        flex-direction: row;
-    }
-
-    #privacypolicy_fieldset label{
-        margin-bottom: 0rem;
-    }
-
-    #privacypolicy_fieldset label a{
-        color: #626f2d;
-    }
-
-    input[type=checkbox] + label {
-        display: block;
-        margin: 0.2em;
-        cursor: pointer;
-        padding: 0.2em;
-    }
-      
-    input[type=checkbox] {
-        display: none;
-    }
-      
-    input[type=checkbox] + label:before {
-        content: "\2714";
-        border: 0.1em solid #000;
-        display: inline;
-        padding-left: 0.2em;
-        padding-right: 0.2em;
-        padding-bottom: 0.05em;
-        padding-top: 0.05em;
-        margin-right: 0.3em;
-        color: transparent;
-        transition: .2s;
-    }
-      
-    input[type=checkbox] + label:active:before {
-        transform: scale(0);
-    }
-      
-    input[type=checkbox]:checked + label:before {
-        background-color: #626f2d;
-        border-color: #626f2d;
-        color: #fff;
-    }
-      
-    input[type=checkbox]:disabled + label:before {
-        transform: scale(1);
-        border-color: #aaa;
-    }
-      
-    input[type=checkbox]:checked:disabled + label:before {
-        transform: scale(1);
-        background-color: #bfb;
-        border-color: #bfb;
-    }
-      
+    
     footer{
-       position: fixed;
-       bottom: 0px;
-       width: 100%;
+        visibility: hidden;
     }
 
     footer div{
+        width: 100%;
         display: flex;
         margin: 0%;
         background-color: black;
@@ -202,9 +141,7 @@
     footer div a{
         color: #626f2d;
     }
-
     .alert{
         margin: 0% !important;
-        margin-bottom: 0.5rem !important;
     }
 }

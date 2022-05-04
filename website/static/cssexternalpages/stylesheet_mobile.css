@@ -47,144 +47,105 @@
 
     main{
         display: flex !important;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin-bottom: 5rem;
-        margin-top: 0.5rem;
-    }
-
-    #img_section{
-        display: none;
-    }
-
-    #form_section{
-        display: flex;
-        justify-self: center;
-        align-items: center;
-        margin: auto;
-        margin-bottom: 2.5rem;
-    }
-
-    #form_section form{
-        text-align: center;
-    }
-
-    #form_section h1{
-        font-size: xx-large;
-        margin-bottom: 4rem;
-    }
-
-    #form_section p{
-        color: grey;
-    }
-    #form_section p a{
-        color: #626f2d;
-    }
-
-    #form_section form fieldset{
-        display: flex;
-        border: none;
-        margin: 2rem 0rem;
-    }
-
-    #username_fieldset, #password_fieldset{
         flex-direction: column;
+        flex-wrap: nowrap;
+        margin-bottom: -0.25rem;
+        height: 100%;
+        align-items: center;
     }
 
-    #username, #password{
+    .title_container{
+        display: flex;
+        flex-direction: row;
+        background-color: #626f2d;
+        color: white;
+        padding: 1.5rem;
+        justify-self: flex-start;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+    }
+
+    fieldset{
+        display: flex;
+        flex-direction: column;
+        margin: 1rem 0.5rem;
+    }
+
+    input{
         border: none;
         border-bottom: solid 0.1rem black;
         border-radius: 0%;
-        width: 15rem;
         height: 2rem;
         color: #626f2d;
-        font-size: 1rem;
         caret-color: #626f2d;
+        background-color: transparent;
     }
 
-    #username::placeholder, #password::placeholder{
+    select{
+        border: none;
+        border-bottom: solid 0.1rem black;
+        border-radius: 0%;
+        height: 2rem;
+        color: #626f2d;
+        caret-color: #626f2d;
+        background-color: transparent;
+    }
+
+    textarea{
+        border: none;
+        border-bottom: solid 0.1rem black;
+        border-radius: 0%;
+        height: 3rem;
+        min-height: 2.25rem;
+        max-height: 4rem;
+        color: #626f2d;
+        caret-color: #626f2d;
+        background-color: transparent;
+    }
+    
+    textarea::placeholder{
         font-size: 1rem;
         line-height: 1rem;
     }
 
-    #login_button{
-        background-color: transparent;
-        border: none;
-        font-size: medium;
-        border: solid 0.1rem #626f2d;
-        padding: 0.25rem 1rem;
+    form{
+        height: fit-content;
+        margin-bottom: 5rem;
     }
 
-    #login_button:hover{
-        color: #626f2d;
-    }
-
-    #privacypolicy_fieldset{
-        margin: auto;
+    form a{
         display: flex;
-        border: none;
-        margin: 0rem 0rem;
+        justify-content: center;
+    }
+
+    .save_button{
+        display: flex;
         flex-direction: row;
-    }
-
-    #privacypolicy_fieldset label{
-        margin-bottom: 0rem;
-    }
-
-    #privacypolicy_fieldset label a{
-        color: #626f2d;
-    }
-
-    input[type=checkbox] + label {
-        display: block;
-        margin: 0.2em;
-        cursor: pointer;
-        padding: 0.2em;
-    }
-      
-    input[type=checkbox] {
-        display: none;
-    }
-      
-    input[type=checkbox] + label:before {
-        content: "\2714";
-        border: 0.1em solid #000;
-        display: inline;
-        padding-left: 0.2em;
-        padding-right: 0.2em;
-        padding-bottom: 0.05em;
-        padding-top: 0.05em;
-        margin-right: 0.3em;
-        color: transparent;
-        transition: .2s;
-    }
-      
-    input[type=checkbox] + label:active:before {
-        transform: scale(0);
-    }
-      
-    input[type=checkbox]:checked + label:before {
+        border: 1px #626f2d solid;
+        justify-content: space-around;
+        align-items: center;
+        border: none;
+        width: 10rem;
+        height: 2rem;
         background-color: #626f2d;
-        border-color: #626f2d;
-        color: #fff;
+        color: white;
+        margin-top: 2rem;
     }
-      
-    input[type=checkbox]:disabled + label:before {
-        transform: scale(1);
-        border-color: #aaa;
+
+    .save_button:hover{
+        background-color: transparent;
+        color: #626f2d;
+        border: 1px #626f2d solid;
+        box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
     }
-      
-    input[type=checkbox]:checked:disabled + label:before {
-        transform: scale(1);
-        background-color: #bfb;
-        border-color: #bfb;
-    }
-      
+
+
+
     footer{
-       position: fixed;
-       bottom: 0px;
-       width: 100%;
+        display: none !important;
+        position: relative;
+        top: 0rem;
     }
 
     footer div{
@@ -203,8 +164,25 @@
         color: #626f2d;
     }
 
+    .edit_fieldset_container{
+        display: flex;
+        width: 100%;
+        height: 30rem;
+        margin-top: 2.5rem;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .transaction_fieldset_container{
+        display: flex;
+        width: 100%;
+        height: 15rem;
+        margin-top: 2.5rem;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
     .alert{
         margin: 0% !important;
-        margin-bottom: 0.5rem !important;
     }
 }

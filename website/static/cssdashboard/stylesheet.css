@@ -577,7 +577,11 @@
         border-right: #626f2d solid 0.05rem;
     }
 
-
+    .is_disabled{
+        color: grey !important;
+        z-index: -333 !important;
+        cursor: not-allowed;
+    }
 
     footer{
         position: relative;
