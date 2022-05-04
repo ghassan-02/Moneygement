@@ -19,6 +19,11 @@ def welcome():
 def privacy_policy():
     return render_template("privacy_policy.html")
 
+@views.route('/Support')
+def support():
+    return render_template("support.html")
+
+
 # @views.route('/home')
 # @login_required
 # def home():
