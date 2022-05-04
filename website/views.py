@@ -14,6 +14,11 @@ views=Blueprint('views',__name__)
 def welcome():
     return render_template("welcome.html")
 
+
+@views.route('/PrivacyPolicy')
+def privacy_policy():
+    return render_template("privacy_policy.html")
+
 # @views.route('/home')
 # @login_required
 # def home():

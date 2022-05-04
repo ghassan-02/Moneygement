@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+@media(min-width: 1001px){
+    body{
+        margin: 0%;
+        font-family: PT Sans, open-sans;
+        display: flex;
+        flex-direction: column;
+    }
+
+    hr{
+        background-color: #626f2d;
+        width: 100%;
+    }
+
+    .navigation{
+        display: flex;
+        flex-direction: row;
+        background-color: rgb(0, 0, 0);
+        margin: 0%;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+    .navigation img{
+        height: 7rem;
+        width: 11rem;
+    }
+
+    .navigation ul{
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        margin-right: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .navigation ul a{
+        text-decoration: none;
+        color: white;
+        font-size: large;
+        margin: 0rem 1rem;
+    }
+
+    .navigation ul a:hover{
+    color: #626f2d;
+    }
+
+    main{
+        display: flex !important;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: -0.25rem;
+        padding: 3rem 6rem;
+    }
+
+    
+    footer div{
+        display: flex;
+        margin: 0%;
+        background-color: black;
+        height: 6rem;
+        color: gray;
+        font-size: smaller;
+        flex-direction: column;
+        align-items: center;
+        vertical-align: middle;
+    }
+
+    footer div a{
+        color: #626f2d;
+    }
+    .alert{
+        margin: 0% !important;
+    }
+
+}
